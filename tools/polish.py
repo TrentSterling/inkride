@@ -46,5 +46,8 @@ print('em-dash lines outside comments:', left)
 DST.write_text(html, encoding='utf-8', newline='\n')
 print(f'wrote {DST} ({len(orig)} -> {len(html)} bytes)')
 # ---- SEO About block (prose, crosslinks, JSON-LD) so the page is not just a canvas to Google ----
-import subprocess
-subprocess.run([sys.executable, 'C:/trontstack/seo/about.py', 'inkride'], check=True)
+about = (ROOT / 'tools' / 'about-discovery.html').read_text(encoding='utf-8')
+if html.count('</body>') != 1:
+    sys.exit('ABORT: expected one closing body')
+html = html.replace('</body>', about + '\n</body>')
+DST.write_text(html, encoding='utf-8', newline='\n')
