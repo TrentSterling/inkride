@@ -1,5 +1,10 @@
 # CLAUDE.md, INKRIDE
 
+Current release candidate: 0.3.1, built from `versions/inkride-v4.html`.
+Small-screen About placement reserves a footer without covering riding controls.
+The v3 source and shared About template are unchanged. See
+`qa/responsive-footer/README.md` for the layout audit and test boundaries.
+
 Single-file shared physics sketchbook (Line Rider lineage): draw ink tracks, ride them, crash. Live at https://tront.xyz/inkride/ (GitHub Pages, `main` root). ChatGPT writes the drops; this repo hosts them.
 
 ## Read first
