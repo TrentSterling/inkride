@@ -1,13 +1,13 @@
 """Build index.html from the latest ChatGPT drop in versions/ for hosting at https://tront.xyz/inkride/.
 Exact bytes except: social meta + canonical after <title>, and em dashes out of player-facing strings.
 Every replacement must match exactly once or the script aborts. Run from the repo root:
-    python tools/polish.py [versions/inkride-v3.html]
+    python tools/polish.py [versions/inkride-v4.html]
 """
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'versions' / 'inkride-v3.html'
+SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'versions' / 'inkride-v4.html'
 DST = ROOT / 'index.html'
 html = SRC.read_text(encoding='utf-8')
 orig = html

@@ -13,6 +13,7 @@ const page = await launch({port: +(process.env.PORT || 9433), width: 1280, heigh
 const results = [];
 const check = (name, ok, detail = '') => { results.push({name, ok: !!ok, detail}); console.log((ok ? 'PASS ' : 'FAIL ') + name + (detail ? '  ' + detail : '')); };
 try {
+  await page.init("localStorage.setItem('inkride.prefs.v1',JSON.stringify({sound:false}));");
   await page.goto(target + '#solo');
   await until(() => page.eval('!!window.INKRIDE && !!document.getElementById("rideBtn")'), {timeout: 60000, label: 'boot'});
   check('boot: INKRIDE hook present', true, 'version ' + await page.eval('INKRIDE.version'));
@@ -48,6 +49,6 @@ try {
   const passed = results.filter(r => r.ok).length;
   console.log(`\n${passed}/${results.length} checks passed`);
   writeFileSync(`${out}/verify.json`, JSON.stringify({target, results, logs: page.logs}, null, 2));
-  page.kill();
+  await page.kill();
   process.exitCode = passed === results.length ? 0 : 1;
 }
